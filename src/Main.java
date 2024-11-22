@@ -11,14 +11,32 @@ public class Main {
         HashMap<String, Integer> wordFrequency = new HashMap<>();
 
         //Print prompt to read multiple line until types "exit"
-        System.out.println("Enter Text, and type 'exit' to finish");
+        System.out.println("Enter Text, and type 'exit' on a new line to finish");
         // Read multiple lines until user types "exit"
         while (true) {
             String line = scanner.nextLine();
             if (line.equalsIgnoreCase("exit")) {
                 break;
             }
+            // Process each line and count words
+            String[] words = line.toLowerCase().replaceAll("[^a-zA-Z ]", "").split("\\s+");
+
+            for (String word : words) {
+                if (!word.isEmpty()) {
+                    wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+                }
+            }
+        }
+
+        // Sort by word in alphabetical order using TreeMap
+        TreeMap<String, Integer> sortedWordFrequency = new TreeMap<>(wordFrequency);
+
+        // Display word frequencies
+        System.out.println("\nWord Frequency:");
+        for (Map.Entry<String, Integer> entry : sortedWordFrequency.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
         scanner.close();
     }
 }
-}
+
