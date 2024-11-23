@@ -30,6 +30,7 @@ class MainTest {
     }
 
     // normal case
+    //testing simple input to check if it is running correctly
     @Test
     void standardInput() {
         provideInput("Hello world! This is a test. Hello again.\nexit\n");
@@ -46,7 +47,7 @@ class MainTest {
                 """.trim();
         assertEquals(expected, getOutput());
     }
-
+    //testing if case and punctuation work and ignored
     @Test
     void mixedCaseAndPunctuation() {
         provideInput("Java is fun. Java, Java, and more Java!\nexit\n");
@@ -61,7 +62,7 @@ class MainTest {
                 """.trim();
         assertEquals(expected, getOutput());
     }
-
+    //testing multiple line input
     @Test
     void multiLineInput() {
         provideInput("Line one.\nLine two, two.\nLine three, three, three.\nexit\n");
@@ -76,6 +77,7 @@ class MainTest {
         assertEquals(expected, getOutput());
     }
     //edge case
+    //testing when no input other than exit
     @Test
     void emptyInput() {
         provideInput("exit\n");
@@ -83,7 +85,7 @@ class MainTest {
         String expected = "Word Frequency:";
         assertEquals(expected, getOutput());
     }
-
+    //testing single word that is repeated
     @Test
     void singleWordRepeated() {
         provideInput("test test test test test\nexit\n");
@@ -94,7 +96,7 @@ class MainTest {
                 """.trim();
         assertEquals(expected, getOutput());
     }
-
+    //testing if only punctuation would be count or not.
     @Test
     void onlyPunctuation() {
         provideInput("!!! ??? ,,, ... ;;; :::\nexit\n");
